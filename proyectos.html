@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Proyectos de Daniel Grande Rubio: ValoInsight, intérprete con Flex y Bison, algoritmos evolutivos y metaheurísticas.">
+  <meta name="theme-color" content="#071017">
+  <title>Proyectos — Daniel Grande Rubio</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260711-ui4">
+  <script src="assets/js/data.js?v=20260711-ui4" defer></script>
+  <script src="assets/js/main.js?v=20260711-ui4" defer></script>
+  <script src="assets/js/projects.js?v=20260711-ui4" defer></script>
+  <script src="assets/js/i18n.js?v=20260711-ui4" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+  <div class="cursor-glow" data-cursor-glow></div>
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">DG</span><span class="brand-text">Daniel Grande <span>/ Proyectos</span></span></a>
+      <nav class="nav" data-nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a class="active" href="proyectos.html">Proyectos</a>
+        <a href="valoinsight.html">ValoInsight</a>
+        <a href="curriculum.html">Currículum</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <a class="btn btn-secondary header-cv" href="index.html#contacto">Contacto</a>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow reveal">Archivo de proyectos</span>
+        <h1 class="reveal delay-1">Código con contexto,<br>decisiones y resultados.</h1>
+        <p class="reveal delay-2">Cada proyecto incluye su finalidad, herramientas, funcionamiento y colaboradores. Los datos públicos de GitHub se actualizan automáticamente cuando la API está disponible.</p>
+        <div class="page-hero-actions reveal delay-3"><a class="btn btn-primary" href="valoinsight.html">Empezar por ValoInsight</a><a class="btn btn-secondary" href="https://github.com/Dani93414" target="_blank" rel="noreferrer">Perfil de GitHub ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <div class="proof-bar reveal" style="margin-bottom:54px">
+          <div class="proof-item"><strong>10</strong><span>Proyectos documentados</span></div>
+          <div class="proof-item"><strong>8</strong><span>Áreas técnicas</span></div>
+          <div class="proof-item"><strong>3</strong><span>Proyectos colaborativos</span></div>
+          <div class="proof-item"><strong>1</strong><span>Producto full stack</span></div>
+        </div>
+        <div class="filter-bar reveal">
+          <div class="filters" aria-label="Filtrar proyectos">
+            <button class="filter-btn active" type="button" data-project-filter="Todos">Todos</button>
+            <button class="filter-btn" type="button" data-project-filter="Full stack">Full stack</button>
+            <button class="filter-btn" type="button" data-project-filter="Python">Python</button>
+            <button class="filter-btn" type="button" data-project-filter="C++">C++</button>
+            <button class="filter-btn" type="button" data-project-filter="Datos">Datos</button>
+            <button class="filter-btn" type="button" data-project-filter="Universidad">Universidad</button>
+            <button class="filter-btn" type="button" data-project-filter="Metaheurística">Metaheurística</button>
+            <button class="filter-btn" type="button" data-project-filter="Web">Web</button>
+          </div>
+          <input class="project-search" data-project-search type="search" placeholder="Buscar proyecto o tecnología" aria-label="Buscar proyecto">
+        </div>
+        <div class="projects-full-grid" data-project-grid></div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <article class="card reveal" style="padding:34px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center">
+          <div><span class="eyebrow">Transparencia</span><h2 style="margin:0;font-size:clamp(2rem,4vw,3rem)">El repositorio TSP es privado.</h2><p class="muted">La ficha explica el proyecto, pero un reclutador no podrá abrir el código hasta que se haga público o se publique una versión revisada.</p></div>
+          <a class="btn btn-secondary" href="docs/CONTENT_PENDING.md">Ver contenidos pendientes</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="project-dialog" data-project-dialog>
+    <button class="icon-btn dialog-close" type="button" data-dialog-close aria-label="Cerrar">×</button>
+    <div class="dialog-inner" data-dialog-content></div>
+  </dialog>
+
+  <footer class="site-footer"><div class="container footer-inner"><span>© <span data-year></span> Daniel Grande Rubio.</span><div class="footer-links"><a href="index.html">Inicio</a><a href="valoinsight.html">ValoInsight</a><a href="curriculum.html">CV</a></div></div></footer>
+</body>
+</html>

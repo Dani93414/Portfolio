@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Caso de estudio de ValoInsight, plataforma full stack de análisis táctico y estadístico de partidas de VALORANT.">
+  <meta name="theme-color" content="#071017">
+  <title>ValoInsight — Caso de estudio</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260711-ui4">
+  <script src="assets/js/data.js?v=20260711-ui4" defer></script>
+  <script src="assets/js/main.js?v=20260711-ui4" defer></script>
+  <script src="assets/js/i18n.js?v=20260711-ui4" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+  <div class="cursor-glow" data-cursor-glow></div>
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <header class="site-header" data-header>
+    <div class="header-inner">
+      <a class="brand" href="index.html"><span class="brand-mark">DG</span><span class="brand-text">Daniel Grande <span>/ ValoInsight</span></span></a>
+      <nav class="nav" data-nav aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="#problema">Problema</a>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#aprendizajes">Aprendizajes</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <a class="btn btn-secondary header-cv" href="https://github.com/Dani93414/ValoInsight_Centro-tactico-y-analitico-para-VALORANT" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="valo-hero">
+      <div class="container valo-hero-grid">
+        <div>
+          <div class="status-pill reveal"><span class="status-dot"></span> Proyecto principal · En desarrollo</div>
+          <h1 class="reveal delay-1">Valo<span>Insight</span></h1>
+          <p class="reveal delay-2">Centro táctico y analítico para VALORANT. Una plataforma que convierte partidas, rondas, economía y eventos en información visual para comprender mejor el rendimiento.</p>
+          <div class="hero-actions reveal delay-3">
+            <a class="btn btn-primary" href="https://github.com/Dani93414/ValoInsight_Centro-tactico-y-analitico-para-VALORANT" target="_blank" rel="noreferrer">Explorar el código ↗</a>
+            <a class="btn btn-secondary" href="#arquitectura">Ver arquitectura</a>
+          </div>
+          <div class="valo-metrics reveal delay-3">
+            <div class="valo-metric"><strong>React + Vite</strong><span>Frontend desacoplado</span></div>
+            <div class="valo-metric"><strong>FastAPI</strong><span>Backend y endpoints</span></div>
+            <div class="valo-metric"><strong>MongoDB</strong><span>Persistencia y derivados</span></div>
+          </div>
+        </div>
+        <div class="project-mockup valo-demo reveal delay-2" aria-label="Vista conceptual de ValoInsight">
+          <div class="mock-shell">
+            <div class="mock-top"><span class="mock-logo">VALOINSIGHT</span><div class="mock-nav"><span>Agentes</span><span>Armas</span><span>Mapas</span><span>Estadísticas</span></div></div>
+            <div class="mock-main">
+              <div class="mock-panel">
+                <h5>Impacto por ronda · Jugador seleccionado</h5>
+                <div class="mock-chart"><svg viewBox="0 0 400 130" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,105 36,96 72,74 108,86 144,52 180,60 216,31 252,47 288,22 324,44 360,18 400,27" fill="none" stroke="#ff6f76" stroke-width="3"/><polyline points="0,116 36,108 72,102 108,96 144,88 180,82 216,70 252,67 288,60 324,54 360,49 400,44" fill="none" stroke="#63e6d6" stroke-width="2" opacity=".8"/></svg></div>
+                <div class="mock-stats"><div class="mock-stat"><b>246</b><span>ACS</span></div><div class="mock-stat"><b>148</b><span>ADR</span></div><div class="mock-stat"><b>7</b><span>Rondas clave</span></div></div>
+              </div>
+              <div class="mock-panel"><h5>Eventos de la ronda</h5><div class="mock-list"><div class="mock-row"><i class="mock-avatar"></i><span>0:42 · Opening kill</span><b>K</b></div><div class="mock-row"><i class="mock-avatar"></i><span>0:31 · Plant</span><b>P</b></div><div class="mock-row"><i class="mock-avatar"></i><span>0:19 · Trade</span><b>T</b></div><div class="mock-row"><i class="mock-avatar"></i><span>0:07 · Defuse</span><b>D</b></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <div class="proof-bar reveal">
+          <div class="proof-item"><strong>2 capas</strong><span>Frontend y backend separados</span></div>
+          <div class="proof-item"><strong>1 comando</strong><span>Pipeline completo de partidas</span></div>
+          <div class="proof-item"><strong>Paralelo</strong><span>Inserción y procesamiento</span></div>
+          <div class="proof-item"><strong>Verificable</strong><span>Integridad y deduplicación</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problema">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">01 · El problema</span>
+          <h2>Una partida contiene más información de la que muestra el marcador.</h2>
+          <p>Los resultados finales no explican dónde se produjo el impacto, cómo influyó la economía, qué ocurrió en cada ronda o qué patrones aparecen al comparar partidas.</p>
+        </div>
+        <div class="case-grid">
+          <article class="case-card card reveal"><h3>Información dispersa</h3><p>Historial, agentes, armas, mapas, economía y eventos necesitan una estructura común para poder compararse.</p><ul><li>Payloads extensos y variables</li><li>Identificadores que requieren normalización</li><li>Datos derivados que deben recalcularse</li></ul></article>
+          <article class="case-card card highlight reveal delay-1"><h3>La propuesta</h3><p>Centralizar el flujo de datos y convertirlo en una experiencia navegable: del resumen global al detalle de una partida, una ronda o un evento.</p><ul><li>Procesamiento reproducible</li><li>Visualizaciones con contexto</li><li>Separación clara de responsabilidades</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="funcionalidades">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">02 · Funcionalidades</span>
+          <h2>Del historial general al detalle táctico.</h2>
+          <p>El frontend incluye rutas específicas para agentes, armas, mapas, actos, eventos, modos, cosméticos, estadísticas globales, perfiles de jugador y heatmaps.</p>
+        </div>
+        <div class="feature-list">
+          <article class="feature-item card reveal"><span class="feature-number">01</span><h3>Búsqueda y perfil</h3><p>Consulta jugadores y presenta un punto de entrada unificado hacia estadísticas, historial y visualizaciones.</p></article>
+          <article class="feature-item card reveal delay-1"><span class="feature-number">02</span><h3>Historial de partidas</h3><p>Explora resultados, marcador, composición de equipos y detalle de cada encuentro.</p></article>
+          <article class="feature-item card reveal delay-2"><span class="feature-number">03</span><h3>Detalle por ronda</h3><p>Timeline, eventos, kills, muertes, objetivos, economía y contexto del jugador seleccionado.</p></article>
+          <article class="feature-item card reveal"><span class="feature-number">04</span><h3>Mapas y heatmaps</h3><p>Representación espacial de acciones para estudiar posiciones, zonas y secuencias relevantes.</p></article>
+          <article class="feature-item card reveal delay-1"><span class="feature-number">05</span><h3>Análisis por contenido</h3><p>Agentes, armas, mapas, actos, eventos, modos y cosméticos organizados en rutas independientes.</p></article>
+          <article class="feature-item card reveal delay-2"><span class="feature-number">06</span><h3>Estadísticas derivadas</h3><p>Métricas calculadas a partir de datos base y reconstruidas después de cada actualización del dataset.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="arquitectura">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">03 · Arquitectura</span>
+          <h2>Capas separadas y un flujo de datos controlado.</h2>
+          <p>La base URL del frontend y los orígenes CORS del backend se parametrizan mediante variables de entorno, evitando URLs rígidas por archivo.</p>
+        </div>
+        <div class="architecture card reveal">
+          <div class="arch-flow">
+            <article class="arch-node"><span class="arch-index mono">01</span><h4>Usuario</h4><p>Búsqueda, filtros y navegación.</p></article>
+            <article class="arch-node"><span class="arch-index mono">02</span><h4>React</h4><p>Vistas, estado, caché y gráficas.</p></article>
+            <article class="arch-node"><span class="arch-index mono">03</span><h4>FastAPI</h4><p>Endpoints y lógica de acceso.</p></article>
+            <article class="arch-node"><span class="arch-index mono">04</span><h4>Servicios</h4><p>Transformación y validación.</p></article>
+            <article class="arch-node"><span class="arch-index mono">05</span><h4>MongoDB</h4><p>Partidas y estadísticas derivadas.</p></article>
+            <article class="arch-node"><span class="arch-index mono">06</span><h4>Visualización</h4><p>Contexto táctico y analítico.</p></article>
+          </div>
+        </div>
+
+        <div class="tech-columns" style="margin-top:28px">
+          <article class="tech-column card reveal"><h3>Frontend</h3><div class="tech-item"><strong>React 19 + TypeScript</strong><span>Componentes, tipado y experiencia de usuario.</span></div><div class="tech-item"><strong>Vite</strong><span>Entorno de desarrollo y construcción.</span></div><div class="tech-item"><strong>React Query</strong><span>Caché, estados de carga y sincronización.</span></div><div class="tech-item"><strong>Recharts + simpleheat</strong><span>Gráficas y mapas de calor.</span></div></article>
+          <article class="tech-column card reveal delay-1"><h3>Backend y datos</h3><div class="tech-item"><strong>FastAPI + Uvicorn</strong><span>API Python y servidor ASGI.</span></div><div class="tech-item"><strong>Pydantic</strong><span>Validación de modelos y contratos.</span></div><div class="tech-item"><strong>MongoDB + PyMongo</strong><span>Persistencia documental.</span></div><div class="tech-item"><strong>Pandas / NumPy</strong><span>Procesamiento y agregaciones.</span></div></article>
+          <article class="tech-column card reveal delay-2"><h3>Análisis y calidad</h3><div class="tech-item"><strong>scikit-learn / SciPy</strong><span>Herramientas de análisis y cálculo.</span></div><div class="tech-item"><strong>Vitest</strong><span>Pruebas del frontend.</span></div><div class="tech-item"><strong>ESLint</strong><span>Calidad y consistencia de código.</span></div><div class="tech-item"><strong>Variables de entorno</strong><span>Configuración segura y portable.</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pipeline">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">04 · Pipeline de partidas</span>
+          <h2>Actualizar datos sin perder integridad.</h2>
+          <p>El repositorio incluye un comando recomendado que descarga nuevas partidas, evita duplicados, convierte el formato, inserta en paralelo y reconstruye estadísticas.</p>
+        </div>
+        <div class="pipeline">
+          <article class="pipeline-step reveal"><div><h3>Seleccionar jugadores y volumen</h3><p>El comando admite jugadores concretos, número de partidas y búsqueda histórica ampliada.</p></div></article>
+          <article class="pipeline-step reveal"><div><h3>Descargar y completar</h3><p>Busca partidas nuevas y puede seguir recorriendo el historial cuando aparecen registros repetidos.</p></div></article>
+          <article class="pipeline-step reveal"><div><h3>Deduplicar contra MongoDB</h3><p>Evita insertar partidas ya existentes y permite eliminar duplicados detectados.</p></div></article>
+          <article class="pipeline-step reveal"><div><h3>Convertir al formato final</h3><p>Normaliza el payload para que el backend y las estadísticas trabajen con una estructura común.</p></div></article>
+          <article class="pipeline-step reveal"><div><h3>Insertar en paralelo</h3><p>Reduce el tiempo de carga cuando se procesan volúmenes grandes de partidas.</p></div></article>
+          <article class="pipeline-step reveal"><div><h3>Reconstruir y verificar</h3><p>Regenera estadísticas derivadas y comprueba que cada jugador tenga la cantidad esperada.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">05 · Experiencia visual</span>
+          <h2>La interfaz debe explicar lo que ocurrió.</h2>
+          <p>Estas composiciones son representaciones conceptuales del contenido. Las capturas reales del producto se indican en la lista de material pendiente.</p>
+        </div>
+        <div class="gallery-grid">
+          <article class="gallery-card reveal"><h3>Detalle de partida</h3><p>Resumen, equipos, timeline, economía, eventos y contexto del jugador dentro del mismo flujo.</p><div class="gallery-visual"><div class="gallery-lines"></div></div></article>
+          <article class="gallery-card reveal delay-1"><h3>Mapa de eventos</h3><p>Acciones y posiciones vinculadas a la ronda.</p><div class="gallery-map"></div></article>
+          <article class="gallery-card reveal delay-2"><h3>Tendencias</h3><p>Comparación temporal de métricas y rendimiento.</p><div class="gallery-visual" style="height:54%;inset:auto -10% -18% 7%"><div class="mock-chart" style="height:100%"><svg viewBox="0 0 400 130" preserveAspectRatio="none"><polyline points="0,103 50,78 96,89 145,43 198,54 245,24 294,50 350,18 400,32" fill="none" stroke="#63e6d6" stroke-width="3"/></svg></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="aprendizajes">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">06 · Retos y aprendizajes</span>
+          <h2>El valor está también en las decisiones difíciles.</h2>
+        </div>
+        <div class="case-grid">
+          <article class="case-card card reveal"><h3>Escala y disponibilidad</h3><p>La obtención histórica depende de límites, caché y disponibilidad de APIs externas. El pipeline debe asumir datos incompletos, reintentos y duplicados.</p></article>
+          <article class="case-card card reveal delay-1"><h3>Consistencia entre capas</h3><p>Separar frontend y backend obliga a definir contratos claros, centralizar la URL de API y parametrizar CORS por entorno.</p></article>
+          <article class="case-card card reveal"><h3>Datos derivados</h3><p>Las estadísticas no deben quedar desactualizadas después de insertar partidas. Por eso el flujo termina reconstruyendo agregados.</p></article>
+          <article class="case-card card reveal delay-1"><h3>Jerarquía visual</h3><p>Una vista con muchos datos necesita guiar al usuario: resumen, detalle, ronda, evento y explicación, sin convertir la pantalla en una tabla interminable.</p></article>
+        </div>
+
+        <div class="section-heading reveal" style="margin-top:84px">
+          <span class="eyebrow">Próximos pasos</span>
+          <h2>Evolución prevista.</h2>
+        </div>
+        <div class="next-grid">
+          <article class="next-item card reveal"><b>01</b><p>Añadir una demo pública estable con backend y base de datos preparados para producción.</p></article>
+          <article class="next-item card reveal delay-1"><b>02</b><p>Documentar métricas reales de rendimiento, volumen procesado y tiempos del pipeline.</p></article>
+          <article class="next-item card reveal"><b>03</b><p>Ampliar pruebas automáticas y monitorización de errores de APIs externas.</p></article>
+          <article class="next-item card reveal delay-1"><b>04</b><p>Incorporar capturas y vídeo corto de los flujos principales para el portfolio.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="container">
+        <article class="featured-project reveal" style="text-align:center">
+          <span class="eyebrow" style="justify-content:center">Proyecto personal / TFG</span>
+          <h2 style="font-size:clamp(2.5rem,6vw,5rem);margin:8px 0 16px;line-height:1">Explora el desarrollo real.</h2>
+          <p class="muted" style="max-width:700px;margin:0 auto">El repositorio contiene frontend, backend, scripts, configuración y el pipeline de partidas. ValoInsight no está afiliado, respaldado ni patrocinado por Riot Games.</p>
+          <div class="hero-actions" style="justify-content:center"><a class="btn btn-primary" href="https://github.com/Dani93414/ValoInsight_Centro-tactico-y-analitico-para-VALORANT" target="_blank" rel="noreferrer">Abrir repositorio ↗</a><a class="btn btn-secondary" href="proyectos.html">Ver otros proyectos</a></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><span>© <span data-year></span> Daniel Grande Rubio.</span><div class="footer-links"><a href="index.html">Inicio</a><a href="proyectos.html">Proyectos</a><a href="curriculum.html">CV</a></div></div></footer>
+</body>
+</html>
