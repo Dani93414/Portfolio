@@ -11,8 +11,35 @@
   const desktop = qs('[data-os-desktop]');
   const desktopLight = qs('[data-desktop-light]');
   const cvLibraryDialog = qs('[data-cv-library-dialog]');
+  const certificatesDialog = qs('[data-certificates-dialog]');
   const openCvLibrary = () => {
     if (cvLibraryDialog?.showModal) cvLibraryDialog.showModal();
+  };
+  const openCertificatesDialog = (folder) => {
+    if (!certificatesDialog?.showModal || certificatesDialog.open) return;
+    folder?.classList.add('is-opening');
+    window.setTimeout(() => folder?.classList.remove('is-opening'), prefersReduced ? 0 : 160);
+    certificatesDialog.classList.remove('is-closing', 'is-open');
+    certificatesDialog.showModal();
+    if (prefersReduced) {
+      certificatesDialog.classList.add('is-open');
+      return;
+    }
+    void certificatesDialog.offsetWidth;
+    requestAnimationFrame(() => certificatesDialog.classList.add('is-open'));
+  };
+  const closeCertificatesDialog = () => {
+    if (!certificatesDialog?.open) return;
+    if (prefersReduced) {
+      certificatesDialog.close();
+      return;
+    }
+    certificatesDialog.classList.remove('is-open');
+    certificatesDialog.classList.add('is-closing');
+    window.setTimeout(() => {
+      if (certificatesDialog.open) certificatesDialog.close();
+      certificatesDialog.classList.remove('is-closing');
+    }, 180);
   };
   const leaveDesktop = (destination = '#inicio') => {
     if (!desktop) return;
@@ -60,12 +87,17 @@
         }
         if (finePointer) selectFolder(folder, event.ctrlKey || event.metaKey);
         else if (folder.dataset.folderId === 'cv') openCvLibrary();
+        else if (folder.dataset.folderId === 'certificates') openCertificatesDialog(folder);
         else leaveDesktop(folder.getAttribute('href'));
       });
       folder.addEventListener('dblclick', (event) => {
         event.preventDefault();
         if (folder.dataset.folderId === 'cv') {
           openCvLibrary();
+          return;
+        }
+        if (folder.dataset.folderId === 'certificates') {
+          openCertificatesDialog(folder);
           return;
         }
         leaveDesktop(folder.getAttribute('href'));
@@ -75,6 +107,10 @@
         event.preventDefault();
         if (folder.dataset.folderId === 'cv') {
           openCvLibrary();
+          return;
+        }
+        if (folder.dataset.folderId === 'certificates') {
+          openCertificatesDialog(folder);
           return;
         }
         leaveDesktop(folder.getAttribute('href'));
@@ -132,6 +168,12 @@
       body.classList.remove('desktop-exited');
     });
     qs('[data-cv-library-close]')?.addEventListener('click', () => cvLibraryDialog?.close());
+    qs('[data-certificates-close]')?.addEventListener('click', closeCertificatesDialog);
+    certificatesDialog?.addEventListener('close', () => certificatesDialog.classList.remove('is-open', 'is-closing'));
+    qsa('[data-certificates-link]').forEach((link) => link.addEventListener('click', (event) => {
+      event.preventDefault();
+      openCertificatesDialog();
+    }));
     if (!prefersReduced && window.matchMedia('(pointer:fine)').matches && desktopLight) {
       desktop.addEventListener('pointermove', (event) => {
         const rect = desktop.getBoundingClientRect();
