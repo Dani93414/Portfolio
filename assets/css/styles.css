@@ -1530,3 +1530,67 @@ html[lang="en"] .approach-header small::after { content:" · 5 PRINCIPLES · PRO
 .approach-detail-value p { color:var(--text); font-size:.77rem; font-weight:560; }
 .approach-actions { margin-top:11px; }
 @media(max-width:760px){.approach-dialog-inner{padding:17px 15px 18px}.approach-header small::after{display:none}.approach-layout{gap:10px}.approach-steps{display:grid;grid-template-columns:repeat(5,minmax(48px,1fr));gap:3px}.approach-step{min-width:0;min-height:38px;padding:6px 3px}.approach-step-name svg,.approach-step small{display:none}.approach-step-name{display:block}.approach-step b{font-size:.48rem}.approach-step-node{display:block}.approach-workflow{grid-column:1/-1;margin:2px 0 0;padding:8px 0 0 8px}.approach-workflow ol{gap:2px}.approach-workflow li{font-size:.43rem}.approach-detail{padding:14px}.approach-detail-grid{grid-template-columns:1fr;gap:13px}.approach-detail-side{padding-left:0;border-left:0}.approach-detail-top{grid-template-columns:26px minmax(0,1fr)}.approach-detail-example{display:block}.approach-detail-example strong{display:block;margin-top:5px}}
+
+/* Touch-first safeguards for the application desktop and every modal. */
+@media (pointer:coarse) {
+  button, a, input, textarea, select { touch-action:manipulation; }
+  .desktop-folder { -webkit-tap-highlight-color:transparent; }
+  .desktop-folder:active { transform:scale(.98); }
+  .desktop-dock .taskbar-button, .icon-btn, .dialog-close { min-width:44px; min-height:44px; }
+  .project-item, .tech-chip, .tech-skill-button, .experience-entry { min-height:44px; }
+}
+
+@media (max-width:760px) {
+  .os-desktop { min-height:100dvh; padding:18px 16px calc(88px + env(safe-area-inset-bottom)); }
+  .desktop-folders { width:100%; max-width:430px; gap:18px 12px; padding-bottom:20px; }
+  .desktop-folder { min-width:0; min-height:104px; padding:5px 3px; }
+  .desktop-folder > span:not(.desktop-app-icon):not(.folder-icon) { font-size:12px; }
+  .desktop-folder small { font-size:8px; }
+  .desktop-dock { bottom:max(12px,env(safe-area-inset-bottom)); max-width:calc(100vw - 20px); }
+  .desktop-dock .taskbar-button { width:39px; height:39px; }
+
+  .projects-dialog, .profile-dialog, .experience-dialog, .contact-dialog, .certificates-dialog, .tech-atlas-dialog, .tech-keyboard-dialog, .cv-library-dialog { width:calc(100% - 16px); max-height:calc(100dvh - 16px); border-radius:10px; }
+  .projects-dialog-inner, .profile-dialog-inner, .experience-dialog-inner, .contact-dialog-inner, .certificates-dialog-inner, .tech-atlas-dialog-inner, .tech-keyboard-inner, .cv-library-dialog-inner { max-height:calc(100dvh - 16px); overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
+  .projects-close, .profile-close, .experience-dialog-close, .contact-dialog-close, .certificates-dialog-close, .tech-atlas-close, .tech-keyboard-close { top:8px; right:8px; }
+
+  .projects-dialog { height:calc(100dvh - 16px); }
+  .projects-dialog-inner { padding:14px 12px 12px; }
+  .projects-header { padding-right:42px; }
+  .projects-header>div { display:block; line-height:1.45; }
+  .projects-header small { display:block; margin-top:2px; }
+  .projects-header h2 { font-size:1.32rem; }
+  .projects-header p { font-size:.73rem; line-height:1.35; }
+  .projects-layout { height:calc(100% - 102px); margin-top:10px; gap:9px; }
+  .project-explorer { display:flex; align-items:flex-start; gap:5px; padding:7px; scroll-snap-type:x proximity; }
+  .project-group { display:contents; }
+  .project-group h4 { display:none; }
+  .project-group:not(:first-child) .project-item { display:flex; }
+  .project-item { flex:0 0 auto; min-height:38px; padding:7px 9px; border:1px solid var(--line); border-left:1px solid var(--line); border-radius:6px; scroll-snap-align:start; }
+  .project-item i { width:auto; }
+  .project-detail { padding:13px; overscroll-behavior:contain; }
+  .project-preview { min-height:96px; margin:11px 0; padding:12px; }
+  .project-detail-header h3 { font-size:1.28rem; }
+  .project-detail-header>p, .project-sections p, .project-sections li { font-size:.74rem; }
+
+  .tech-atlas-grid, .tech-keyboard-layout { gap:10px; }
+  .tech-globe-canvas-wrap { min-height:260px; }
+  .tech-globe-hint { max-width:calc(100% - 24px); overflow:hidden; text-overflow:ellipsis; }
+  .tech-atlas-list, .tech-skill-grid { grid-template-columns:1fr 1fr; }
+  .keyboard-scroll { padding-bottom:12px; scroll-snap-type:x proximity; }
+  .keyboard-shell { scroll-snap-align:start; }
+
+  .contact-channel { min-height:48px; }
+  .contact-channel b { white-space:normal; overflow-wrap:anywhere; }
+  .contact-app-form .form-grid { grid-template-columns:1fr; }
+  .contact-app-form .form-field.full { grid-column:auto; }
+  .contact-app-form .btn { width:100%; justify-content:center; min-height:44px; }
+  .profile-quick-actions a, .profile-quick-actions button { min-height:44px; }
+}
+
+@media (max-width:390px) {
+  .desktop-dock { gap:2px; padding:5px; }
+  .desktop-dock .taskbar-button { width:36px; height:36px; }
+  .desktop-app-icon { width:58px; height:52px; }
+  .desktop-folder { min-height:98px; }
+  .tech-atlas-list, .tech-skill-grid { grid-template-columns:1fr; }
+}
