@@ -9,6 +9,7 @@ window.PORTFOLIO_DATA = {
     github: "https://github.com/Dani93414",
     githubUser: "Dani93414",
     linkedin: "https://www.linkedin.com/in/daniel-grande-rubio",
+    photo: "IMG-20251120-WA0080.jpg",
     avatar: "https://avatars.githubusercontent.com/u/152321914?v=4",
     availability: "Abierto a oportunidades",
     summary:

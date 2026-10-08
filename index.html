@@ -10,12 +10,16 @@
   <meta property="og:type" content="website">
   <title>Daniel Grande Rubio — Portfolio</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260711-ui27">
-  <noscript><style>.os-desktop,.desktop-return{display:none!important}.home-page{overflow:auto!important}.home-page> :not(.os-desktop):not(.skip-link){visibility:visible!important}</style></noscript>
+  <script>try{const t=localStorage.getItem('portfolio-theme');document.documentElement.dataset.theme=t==='light'||t==='dark'?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch{document.documentElement.dataset.theme='dark'}</script>
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261008-desktop-layout">
+  <noscript><style>.desktop-return{display:none!important}.home-page{overflow:hidden!important}.home-page> :not(.os-desktop):not(.skip-link){visibility:hidden!important}</style></noscript>
   <script src="assets/js/data.js?v=20260711-ui5" defer></script>
-  <script src="assets/js/main.js?v=20260711-ui12" defer></script>
+  <script src="assets/js/main.js?v=20261008-i18n" defer></script>
   <script src="assets/js/components.js?v=20260711-ui7" defer></script>
-  <script src="assets/js/i18n.js?v=20260711-ui8" defer></script>
+  <script src="assets/js/i18n.js?v=20261008-i18n" defer></script>
+  <script src="assets/js/tech-keyboard-data.js?v=20260711-ui4" defer></script>
+  <script src="assets/js/tech-keyboard.js?v=20260711-ui15" defer></script>
+  <script src="assets/js/projects-explorer.js?v=20261008-i18n" defer></script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -27,32 +31,29 @@
     </div>
     <nav class="desktop-folders" aria-label="Carpetas del portfolio">
       <a class="desktop-folder folder-profile" href="#inicio" data-desktop-link data-folder-id="profile">
-        <span class="folder-icon" aria-hidden="true"><i></i></span><span>Perfil</span><small>inicio</small>
+        <span class="desktop-app-icon app-profile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0M5 3h14v18H5z"/></svg></span><span>Perfil</span><small>inicio</small>
       </a>
       <a class="desktop-folder folder-projects" href="#proyectos" data-desktop-link data-folder-id="projects">
-        <span class="folder-icon" aria-hidden="true"><i></i></span><span>Proyectos</span><small>08 archivos</small>
+        <span class="desktop-app-icon app-projects" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 9-3 3 3 3M16 9l3 3-3 3M14 5l-4 14"/></svg></span><span>Proyectos</span><small>08 archivos</small>
       </a>
       <a class="desktop-folder folder-experience" href="#experiencia" data-desktop-link data-folder-id="experience">
-        <span class="folder-icon" aria-hidden="true"><i></i></span><span>Experiencia</span><small>trayectoria</small>
+        <span class="desktop-app-icon app-experience" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></span><span>Experiencia</span><small>trayectoria</small>
       </a>
       <a class="desktop-folder folder-training" href="#formacion" data-desktop-link data-folder-id="training">
         <span class="folder-icon" aria-hidden="true"><i></i></span><span>Formación</span><small>skills &amp; estudios</small>
       </a>
-      <a class="desktop-folder folder-values" href="#motivaciones" data-desktop-link data-folder-id="values">
-        <span class="folder-icon" aria-hidden="true"><i></i></span><span>Mi enfoque</span><small>criterios</small>
-      </a>
       <a class="desktop-folder folder-certificates" href="#certificados" data-desktop-link data-folder-id="certificates">
-        <span class="folder-icon" aria-hidden="true"><i></i></span><span>Certificados</span><small>credenciales</small>
+        <span class="desktop-app-icon app-certificates" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="m8.5 13-1.5 8 5-3 5 3-1.5-8M10 8l1.3 1.3L14 6.7"/></svg></span><span>Certificados</span><small>credenciales</small>
       </a>
       <a class="desktop-folder folder-cv" href="#curriculum" data-folder-id="cv">
         <span class="folder-icon" aria-hidden="true"><i></i></span><span>Currículum</span><small>PDF &amp; vista previa</small>
       </a>
       <a class="desktop-folder folder-contact" href="#contacto" data-desktop-link data-folder-id="contact">
-        <span class="folder-icon" aria-hidden="true"><i></i></span><span>Contacto</span><small>conectemos</small>
+        <span class="desktop-app-icon app-contact" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg></span><span>Contacto</span><small>conectemos</small>
       </a>
     </nav>
     <nav class="desktop-dock" aria-label="Barra de tareas">
-      <button class="taskbar-button taskbar-home" type="button" data-desktop-enter aria-label="Abrir inicio">
+      <button class="taskbar-button taskbar-home" type="button" data-desktop-enter aria-label="Volver al escritorio">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
       </button>
       <a class="taskbar-button taskbar-linkedin" href="https://www.linkedin.com/in/daniel-grande-rubio" target="_blank" rel="noreferrer" aria-label="LinkedIn">
@@ -73,19 +74,117 @@
         <div class="coverflow cv-modal-coverflow" data-coverflow="cv">
           <button class="coverflow-arrow prev" type="button" data-coverflow-prev aria-label="Currículum anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
           <div class="coverflow-stage">
-            <article class="coverflow-card" data-coverflow-item><div class="document-preview a4-preview"><object data="Daniel_Grande_Rubio_Curriculum.pdf#page=1&amp;view=Fit&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" type="application/pdf" aria-label="Vista previa del currículum de programador en español"></object><span class="pdf-fallback">ES · Programación</span></div><h4>Perfil de programador · Español</h4><div class="coverflow-actions"><a href="Daniel_Grande_Rubio_Curriculum.pdf" target="_blank" rel="noreferrer">Abrir</a><a href="Daniel_Grande_Rubio_Curriculum.pdf" download>Descargar</a></div></article>
-            <article class="coverflow-card" data-coverflow-item><div class="document-preview a4-preview"><object data="Curr%C3%ADculum%20Dani%20Educacion.pdf#page=1&amp;view=Fit&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" type="application/pdf" aria-label="Vista previa del currículum educativo en español"></object><span class="pdf-fallback">ES · Educación</span></div><h4>Perfil educativo · Español</h4><div class="coverflow-actions"><a href="Curr%C3%ADculum%20Dani%20Educacion.pdf" target="_blank" rel="noreferrer">Abrir</a><a href="Curr%C3%ADculum%20Dani%20Educacion.pdf" download>Descargar</a></div></article>
+            <article class="coverflow-card" data-coverflow-item><div class="document-preview a4-preview"><object data="Daniel_Grande_Rubio_Curriculum.pdf#page=1&amp;view=Fit&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" type="application/pdf" aria-label="Vista previa del currículum de programador en español"></object><span class="pdf-fallback">ES · Programación</span></div><h4>Perfil de programador · Español</h4><div class="coverflow-actions"><a href="Daniel_Grande_Rubio_Curriculum.pdf" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9"/><path d="M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"/></svg>Abrir</a><a href="Daniel_Grande_Rubio_Curriculum.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 21h14"/></svg>Descargar</a></div></article>
+            <article class="coverflow-card" data-coverflow-item><div class="document-preview a4-preview"><object data="Curr%C3%ADculum%20Dani%20Educacion.pdf#page=1&amp;view=Fit&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" type="application/pdf" aria-label="Vista previa del currículum educativo en español"></object><span class="pdf-fallback">ES · Educación</span></div><h4>Perfil educativo · Español</h4><div class="coverflow-actions"><a href="Curr%C3%ADculum%20Dani%20Educacion.pdf" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9"/><path d="M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"/></svg>Abrir</a><a href="Curr%C3%ADculum%20Dani%20Educacion.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 21h14"/></svg>Descargar</a></div></article>
           </div>
           <button class="coverflow-arrow next" type="button" data-coverflow-next aria-label="Currículum siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
         </div>
       </div>
       <div class="cv-library-content cv-modal-en">
-        <article class="cv-single-document"><div class="document-preview a4-preview"><object data="CV_Daniel_Grande_English.pdf#page=1&amp;view=Fit&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" type="application/pdf" aria-label="Preview of the English programmer résumé"></object><span class="pdf-fallback">EN · Software</span></div><h4>Programmer résumé · English</h4><div class="coverflow-actions"><a href="CV_Daniel_Grande_English.pdf" target="_blank" rel="noreferrer">Open</a><a href="CV_Daniel_Grande_English.pdf" download>Download</a></div></article>
+        <article class="cv-single-document"><div class="document-preview a4-preview"><object data="CV_Daniel_Grande_English.pdf#page=1&amp;view=Fit&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0" type="application/pdf" aria-label="Preview of the English programmer résumé"></object><span class="pdf-fallback">EN · Software</span></div><h4>Programmer résumé · English</h4><div class="coverflow-actions"><a href="CV_Daniel_Grande_English.pdf" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9"/><path d="M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6"/></svg>Open</a><a href="CV_Daniel_Grande_English.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 21h14"/></svg>Download</a></div></article>
       </div>
       <section class="recommendation-preview">
         <div><h3 class="cv-modal-es">Carta de Recomendación:</h3><h3 class="cv-modal-en">Recommendation letter:</h3></div>
         <a class="recommendation-sheet" href="D.%20Grande%20Rubio%20-%20Carta%20de%20recomendaci%C3%B3n.pdf" target="_blank" rel="noreferrer" aria-label="Abrir carta de recomendación"><object data="D.%20Grande%20Rubio%20-%20Carta%20de%20recomendaci%C3%B3n.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0&amp;view=FitH" type="application/pdf"><span>Carta de recomendación</span></object></a>
       </section>
+    </div>
+  </dialog>
+  <dialog class="experience-dialog" data-experience-dialog aria-labelledby="experience-dialog-title">
+    <div class="experience-dialog-inner">
+      <button type="button" class="icon-btn dialog-close experience-dialog-close" data-experience-close aria-label="Cerrar experiencia"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <header class="experience-header">
+        <div class="experience-meta"><span>PROFILE://EXPERIENCE</span><small><i></i> TRAYECTORIA PROFESIONAL</small></div>
+        <span class="eyebrow">EXPERIENCIA</span>
+        <h2 id="experience-dialog-title">Experiencia aplicada a problemas reales.</h2>
+        <p>Automatización, desarrollo y herramientas utilizadas en contextos reales de trabajo.</p>
+      </header>
+      <div class="experience-app-grid">
+        <section class="experience-timeline" aria-labelledby="experience-timeline-title">
+          <h3 id="experience-timeline-title">TRAYECTORIA</h3>
+          <div class="experience-timeline-list" role="tablist" aria-label="Trayectoria profesional">
+            <button class="experience-entry is-active" type="button" role="tab" aria-selected="true" aria-controls="experience-detail-0" data-experience-item="0"><span class="experience-node"></span><span><small>2026</small><b>Prácticas en U24 Los Ángeles</b><em>Córdoba</em><strong>MÁS RECIENTE</strong></span></button>
+            <button class="experience-entry" type="button" role="tab" aria-selected="false" aria-controls="experience-detail-1" data-experience-item="1"><span class="experience-node"></span><span><small>2025–2026</small><b>Desarrollo de ValoInsight</b><em>Proyecto personal y Trabajo Fin de Grado</em></span></button>
+            <button class="experience-entry" type="button" role="tab" aria-selected="false" aria-controls="experience-detail-2" data-experience-item="2"><span class="experience-node"></span><span><small>2022–2026</small><b>Proyectos académicos de ingeniería</b><em>Universidad de Córdoba</em></span></button>
+            <div class="experience-future" aria-hidden="true"><span class="experience-node"></span><span>SIGUIENTE OPORTUNIDAD</span></div>
+          </div>
+        </section>
+        <section class="experience-detail" data-experience-detail aria-live="polite">
+          <article class="experience-detail-panel is-active" id="experience-detail-0" role="tabpanel">
+            <span class="experience-detail-period">2026 · Córdoba</span><h3>Prácticas en U24 Los Ángeles</h3><p class="experience-context">Automatización y desarrollo SPFx</p><p class="experience-summary">Automatización de procesos internos de seguros y gestión documental mediante flujos, datos relacionados y herramientas integradas en Microsoft 365.</p>
+            <div class="experience-highlights"><h4>RESPONSABILIDADES</h4><ul><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Automatización de flujos operativos</b><span>Tratamiento de correos, archivos comprimidos y listados de siniestros para reducir tareas manuales.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Modelo de datos en SharePoint</b><span>Listas relacionadas para clientes, pólizas, siniestros, tramos, productos, colaboradores e importes.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Extensiones personalizadas SPFx</b><span>Trabajo con componentes para ampliar las herramientas disponibles directamente en SharePoint.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Control y distribución de información</b><span>Flujos con control de errores y entrega de información a colaboradores.</span></li></ul></div>
+            <div class="experience-tech"><h4>TECNOLOGÍAS</h4><div><span>Power Automate</span><span>SharePoint</span><span>Microsoft 365</span><span>SPFx</span></div></div>
+            <p class="experience-contribution"><b>APORTACIÓN</b> Aplicación de automatización y desarrollo sobre procesos empresariales reales para centralizar información y reducir trabajo manual.</p>
+          </article>
+          <article class="experience-detail-panel" id="experience-detail-1" role="tabpanel" hidden>
+            <span class="experience-detail-period">2025–2026</span><h3>Desarrollo de ValoInsight</h3><p class="experience-context">Proyecto personal y Trabajo Fin de Grado</p><p class="experience-summary">Producto full stack que transforma datos heterogéneos de partidas de Valorant en análisis táctico, económico y de rendimiento consultable desde una interfaz web.</p>
+            <div class="experience-highlights"><h4>RESPONSABILIDADES</h4><ul><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Arquitectura full stack desacoplada</b><span>Frontend React/TypeScript y backend FastAPI configurados por entorno, con CORS y cliente API centralizado.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Pipeline de ingestión y normalización</b><span>Obtención de partidas, adaptación al esquema propio, deduplicación, inserción paralela y reconstrucción de analíticas derivadas.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Evolución compatible de datos</b><span>Convivencia entre datos legacy y Riot RAW para actualizar el histórico sin depender del formato externo.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Analítica y calidad verificable</b><span>APIs para perfiles, eventos y heatmaps, respaldadas por pruebas de migración, ingestión, eventos y economía.</span></li></ul></div>
+            <div class="experience-tech"><h4>TECNOLOGÍAS</h4><div><span>React</span><span>TypeScript</span><span>FastAPI</span><span>Python</span><span>MongoDB</span><span>Pandas</span><span>Recharts</span></div></div>
+            <p class="experience-contribution"><b>APORTACIÓN</b> Desarrollo integral de un producto de datos: desde ingestión y persistencia hasta APIs, analítica y experiencia de usuario.</p><div class="experience-actions"><a href="valoinsight.html">Ver proyecto →</a><a href="https://github.com/Dani93414/ValoInsight_Centro-tactico-y-analitico-para-VALORANT" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+          </article>
+          <article class="experience-detail-panel" id="experience-detail-2" role="tabpanel" hidden>
+            <span class="experience-detail-period">2022–2026</span><h3>Proyectos académicos de ingeniería</h3><p class="experience-context">Universidad de Córdoba</p><p class="experience-summary">Aplicación práctica de fundamentos de lenguajes, algoritmia, optimización y análisis de datos mediante proyectos completos y experimentables.</p>
+            <div class="experience-highlights"><h4>RESPONSABILIDADES</h4><ul><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Intérprete en C++ con Flex/Bison</b><span>Lenguaje ejecutable con análisis léxico y sintáctico, AST, tabla de símbolos, estructuras de control y gestión de errores.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Optimización y experimentación evolutiva</b><span>Algoritmo genético para ajuste de funciones, con operadores configurables, evaluación por error cuadrático y análisis de convergencia.</span></li><li><svg class="experience-highlight-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg><b>Patrones en series temporales</b><span>Preprocesamiento de CSV y algoritmo evolutivo basado en ventanas, correlación y visualización de patrones detectados.</span></li></ul></div>
+            <div class="experience-tech"><h4>TECNOLOGÍAS</h4><div><span>C++</span><span>Python</span><span>Flex / Bison</span><span>NumPy</span><span>Pandas</span><span>Git</span></div></div>
+            <p class="experience-contribution"><b>APORTACIÓN</b> Base sólida en algoritmia, lenguajes y datos mediante implementación y experimentación, no solo estudio teórico.</p></p><div class="experience-actions"><a href="https://github.com/Dani93414" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+          </article>
+          </article>
+        </section>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="profile-dialog" data-profile-dialog aria-labelledby="profile-dialog-title">
+    <div class="profile-dialog-inner">
+      <button type="button" class="icon-btn dialog-close profile-close" data-profile-close aria-label="Cerrar perfil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <header class="profile-header"><div><span>PROFILE://IDENTITY</span><small><i></i> DISPONIBLE PARA OPORTUNIDADES</small></div><b>PERFIL</b></header>
+      <div class="profile-layout">
+        <aside class="profile-portrait">
+          <figure class="profile-photo-frame"><img class="profile-photo" data-profile-photo src="IMG-20251120-WA0080.jpg" alt="Daniel Grande Rubio"><figcaption class="profile-photo-meta"><span>IDENTITY://DANIEL_GRANDE</span><span>CÓRDOBA · ES</span></figcaption></figure>
+          <div class="profile-location"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 4.5-8 11-8 11S4 14.5 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Córdoba, España</span></div>
+          <div class="profile-education"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-5 9 5-9 5-9-5Z"/><path d="M7 12.2V16c2.6 2 7.4 2 10 0v-3.8"/></svg><span>Ingeniería Informática · Universidad de Córdoba<br><small>Mención en Computación</small></span></div>
+        </aside>
+        <section class="profile-identity">
+          <span class="profile-index">IDENTITY / 01</span><h2 id="profile-dialog-title">Daniel Grande Rubio</h2><p class="profile-role">Ingeniero informático</p><p class="profile-focus-line">Desarrollo · Datos · Automatización</p>
+          <p class="profile-summary"><strong>Construyo soluciones técnicas aplicadas a problemas reales.</strong> Combino desarrollo de software, análisis de datos y automatización para transformar procesos y datos en productos útiles y mantenibles.</p>
+          <section class="profile-signals"><h3>MI ENFOQUE</h3><div class="profile-focus"><article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg><b>SOFTWARE</b><p>Aplicaciones full stack, APIs e interfaces orientadas a producto.</p></article><article><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"/></svg><b>DATOS</b><p>Procesamiento, análisis, machine learning y visualización.</p></article><article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h4l3-8 3 16 3-8h3"/></svg><b>AUTOMATIZACIÓN</b><p>Procesos con Power Automate, SharePoint y Microsoft 365.</p></article></div></section>
+          <div class="profile-bottom-grid"><section class="profile-strengths"><h3>FORTALEZAS</h3><div><span>Pensamiento analítico</span><span>Resolución de problemas</span><span>Adaptabilidad</span><span>Trabajo en equipo</span><span>Organización</span></div></section><section class="profile-now"><h3>AHORA</h3><ul><li>Desarrollando ValoInsight</li><li>Preparando B2 de inglés</li><li>Buscando oportunidades junior</li></ul></section></div>
+          <nav class="profile-quick-actions" aria-label="Accesos rápidos"><button type="button" data-profile-cv><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>Ver currículum</button><button type="button" data-profile-projects><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7l2 2h9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>Ver proyectos</button><a data-profile-github target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a9.2 9.2 0 0 0-2.9 17.9c.5.1.6-.2.6-.5v-1.8c-2.5.5-3-1.1-3-1.1-.4-1-.9-1.2-.9-1.2-.8-.5.1-.5.1-.5.9.1 1.3.9 1.3.9.8 1.3 2 1 2.5.7.1-.5.3-.9.6-1.1-2-.2-4.1-1-4.1-4.4 0-1 .3-1.8.9-2.4-.1-.2-.4-1.1.1-2.4 0 0 .7-.2 2.4.9a8.1 8.1 0 0 1 4.4 0c1.7-1.1 2.4-.9 2.4-.9.5 1.3.2 2.2.1 2.4.6.6.9 1.4.9 2.4 0 3.4-2.1 4.2-4.1 4.4.3.3.6.9.6 1.7v2.5c0 .3.2.6.6.5A9.2 9.2 0 0 0 12 2.8Z"/></svg>GitHub ↗</a><a data-profile-linkedin target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9.5V19M6.5 5.5v.1M10.5 19v-5.3a4.2 4.2 0 0 1 8.4 0V19M10.5 13.3V9.5"/></svg>LinkedIn ↗</a></nav>
+        </section>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="projects-dialog" data-projects-dialog aria-labelledby="projects-dialog-title"><div class="projects-dialog-inner"><button type="button" class="icon-btn dialog-close projects-close" data-projects-close aria-label="Cerrar proyectos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button><header class="projects-header"><div><span>PROFILE://PROJECTS</span><small>● WORKSPACE ACTIVO</small></div><b>PROYECTOS</b><h2 id="projects-dialog-title">Proyectos donde convierto ideas en sistemas funcionales.</h2><p>Software, datos y automatización aplicados a problemas concretos.</p></header><div class="projects-layout"><nav class="project-explorer" data-project-explorer aria-label="Project Explorer"></nav><section class="project-detail" data-project-detail aria-live="polite"></section></div></div></dialog>
+  <dialog class="tech-atlas-dialog" data-tech-atlas-dialog aria-labelledby="tech-atlas-title">
+    <div class="tech-atlas-dialog-inner">
+      <button type="button" class="icon-btn dialog-close tech-atlas-close" data-tech-atlas-close aria-label="Cerrar tecnologías"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <header class="tech-atlas-header"><div class="tech-atlas-meta"><span>PROFILE://TECH-ATLAS</span><small><i></i> STACK INTERACTIVO</small></div><span class="eyebrow">HERRAMIENTAS Y TECNOLOGÍAS</span><h2 id="tech-atlas-title">Tecnologías aplicadas en proyectos reales.</h2><p>Explora los lenguajes, herramientas y ecosistemas utilizados en desarrollo, datos, automatización y software.</p></header>
+      <div class="tech-atlas-grid">
+        <section class="tech-atlas-list-panel" aria-labelledby="tech-atlas-list-title"><div class="tech-atlas-list-heading"><h3 id="tech-atlas-list-title">EXPLORAR STACK</h3><span data-tech-count></span></div><div class="tech-category-filters" data-tech-filters aria-label="Filtrar tecnologías"></div><label class="sr-only" for="tech-atlas-search">Buscar tecnología</label><input id="tech-atlas-search" class="tech-atlas-search" data-tech-search type="search" placeholder="Buscar tecnología..."><div class="tech-atlas-list" data-tech-list></div></section>
+        <section class="tech-globe-panel" aria-labelledby="tech-globe-title"><h3 id="tech-globe-title" class="sr-only">Globo de tecnologías</h3><div class="tech-globe-canvas-wrap"><canvas data-tech-globe role="img" aria-label="Globo interactivo con tecnologías seleccionables"></canvas><p class="tech-globe-hint">Selecciona una tecnología o un marcador</p></div><aside class="tech-callout" data-tech-callout aria-live="polite"></aside></section>
+      </div>
+    </div>
+  </dialog>
+  <dialog class="tech-keyboard-dialog" data-tech-keyboard-dialog aria-labelledby="tech-keyboard-title">
+    <div class="tech-keyboard-inner">
+      <button type="button" class="icon-btn dialog-close tech-keyboard-close" data-tech-keyboard-close aria-label="Cerrar tecnologías"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <header class="tech-keyboard-header">
+        <div class="tech-keyboard-meta"><span>PROFILE://TECH-KEYBOARD</span><small><i></i> STACK INTERACTIVO</small></div>
+        <span class="eyebrow">FORMACIÓN Y STACK</span>
+        <h2 id="tech-keyboard-title">Mi stack, tecla a tecla.</h2>
+        <p>Lenguajes, frameworks y herramientas conectados con los proyectos donde los he utilizado.</p>
+        <small class="tech-academic">BASE ACADÉMICA · Ingeniería Informática · Mención en Computación · Universidad de Córdoba · ESTALMAT 2018–2022</small>
+      </header>
+      <div class="tech-keyboard-layout">
+        <section class="tech-skill-panel" aria-labelledby="tech-skill-title">
+          <div class="tech-skill-heading"><h3 id="tech-skill-title">EXPLORAR STACK</h3><span data-tech-keyboard-count></span></div>
+          <label class="sr-only" for="tech-keyboard-search">Buscar habilidad</label>
+          <input id="tech-keyboard-search" class="tech-skill-search" data-tech-keyboard-search type="search" placeholder="Buscar habilidad...">
+          <div class="tech-skill-filters" data-tech-keyboard-filters aria-label="Filtrar habilidades"></div>
+          <div class="tech-skill-grid" data-tech-keyboard-list></div>
+        </section>
+        <section class="keyboard-panel" aria-label="Teclado tecnológico interactivo">
+          <div class="keyboard-scroll"><div class="keyboard-shell" data-tech-keyboard-stage><small>DGR // DEV BOARD · STACK/01</small><div class="keyboard-rows" data-tech-keyboard-rows></div><aside class="tech-popover" data-tech-keyboard-popover aria-live="polite"></aside></div></div>
+        </section>
+      </div>
     </div>
   </dialog>
   <dialog class="certificates-dialog" data-certificates-dialog aria-labelledby="certificates-dialog-title">
@@ -120,6 +219,28 @@
       </div>
     </div>
   </dialog>
+  <dialog class="contact-dialog" data-contact-dialog aria-labelledby="contact-dialog-title">
+    <div class="contact-dialog-inner">
+      <button type="button" class="icon-btn dialog-close contact-dialog-close" data-contact-close aria-label="Cerrar contacto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <header class="contact-app-header"><div class="contact-meta"><span>PROFILE://CONTACT</span><i></i></div><span class="eyebrow">CONTACTO</span><strong class="contact-status"><i></i> DISPONIBLE PARA OPORTUNIDADES</strong><h2 id="contact-dialog-title">Hablemos de la siguiente oportunidad.</h2><p>Disponible para oportunidades en desarrollo, datos y automatización, así como para proyectos donde pueda aportar una visión técnica completa.</p></header>
+      <div class="contact-app-grid">
+        <section class="contact-channels" aria-labelledby="contact-channels-title"><h3 id="contact-channels-title">CONTACTO DIRECTO</h3>
+          <a class="contact-channel" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=lrg200175@gmail.com" target="_blank" rel="noreferrer"><span class="contact-channel-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><small>CORREO</small><b>lrg200175@gmail.com</b></span><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></em></a>
+          <a class="contact-channel" href="https://www.linkedin.com/in/daniel-grande-rubio" target="_blank" rel="noreferrer"><span class="contact-channel-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></span><span><small>LINKEDIN</small><b>Daniel Grande Rubio</b></span><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></em></a>
+          <a class="contact-channel" href="https://github.com/Dani93414" target="_blank" rel="noreferrer"><span class="contact-channel-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-3.9c.04-1-.34-1.98-1.05-2.68 3.5-.39 7.18-1.72 7.18-7.78a6 6 0 0 0-1.6-4.16A5.6 5.6 0 0 0 19.38.6S18.1.2 15 2.28a15.2 15.2 0 0 0-6 0C5.9.2 4.62.6 4.62.6a5.6 5.6 0 0 0-.15 2.88 6 6 0 0 0-1.6 4.16c0 6.05 3.67 7.38 7.17 7.78A3.8 3.8 0 0 0 9 18.1V22"/><path d="M9 19c-3 .92-3.5-1.4-4.8-1.75"/></svg></span><span><small>GITHUB</small><b>@Dani93414</b></span><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></em></a>
+          <a class="contact-channel" href="tel:+34663653293"><span class="contact-channel-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.64a2 2 0 0 1-.45 2.11L8.03 9.74a16 16 0 0 0 6.23 6.23l1.27-1.27a2 2 0 0 1 2.11-.45c.85.31 1.74.53 2.64.65A2 2 0 0 1 22 16.9Z"/></svg></span><span><small>TELÉFONO</small><b>663 653 293</b></span><em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></em></a>
+          <div class="contact-info"><h4>INFORMACIÓN</h4><div class="contact-location"><span class="contact-channel-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><small>UBICACIÓN</small><b>España</b></span></div><div class="contact-availability"><span class="contact-channel-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3 4.7-4.7"/></svg></span><span><small>ESTADO</small><b>Disponible para oportunidades</b></span></div></div>
+          <div class="contact-quick-actions"><h4>ACCESOS RÁPIDOS</h4><div><a href="curriculum.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>Currículum</a><a href="D.%20Grande%20Rubio%20-%20Carta%20de%20recomendaci%C3%B3n.pdf" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg>Carta de recomendación</a></div></div>
+        </section>
+        <section class="contact-message-panel" aria-labelledby="contact-message-title"><span class="eyebrow">NUEVO MENSAJE</span><h3 id="contact-message-title">Cuéntame brevemente en qué consiste la oportunidad o proyecto.</h3>
+          <form class="contact-form contact-app-form" data-contact-form>
+            <div class="form-grid"><div class="form-field"><label for="contact-dialog-name">Nombre</label><input id="contact-dialog-name" name="name" autocomplete="name" required></div><div class="form-field"><label for="contact-dialog-email">Email</label><input id="contact-dialog-email" type="email" name="email" autocomplete="email" required></div><div class="form-field full"><label for="contact-dialog-subject">Asunto</label><input id="contact-dialog-subject" name="subject" value="Contacto desde el portfolio"></div><div class="form-field full"><label for="contact-dialog-message">Mensaje</label><textarea id="contact-dialog-message" name="message" required placeholder="Cuéntame brevemente en qué consiste la oportunidad o proyecto."></textarea></div></div>
+            <div class="form-actions"><button class="btn btn-primary" type="submit">Abrir en Gmail <span>→</span></button><span class="form-note">Se abrirá Gmail en una pestaña nueva. No se almacenan datos.</span></div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </dialog>
   <button class="desktop-return" type="button" data-desktop-return aria-label="Volver al escritorio"><span></span> Escritorio</button>
   <div class="scroll-progress" data-scroll-progress></div>
   <div class="cursor-glow" data-cursor-glow></div>
@@ -136,8 +257,8 @@
         <a href="#experiencia">Experiencia</a>
         <a href="#formacion">Formación</a>
         <a href="#certificados" data-certificates-link>Certificados</a>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#perfil">Sobre mí</a>
+        <a href="#contacto" data-contact-link>Contacto</a>
       </nav>
       <div class="header-actions">
         <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
@@ -190,7 +311,7 @@
       </div>
     </section>
 
-    <section class="section" id="sobre-mi">
+    <section class="section" id="sobre-mi" hidden>
       <div class="container">
         <div class="section-heading reveal">
           <span class="eyebrow">01 · Sobre mí</span>
@@ -218,10 +339,10 @@
           <article class="timeline-item reveal">
             <div class="timeline-date mono">2026</div>
             <div class="timeline-card card">
-              <h3>Prácticas en correduría de seguros</h3>
-              <div class="company">U24 Los Ángeles · Córdoba</div>
-              <p>Automatización de procesos internos y apoyo en gestión documental. Desarrollo de flujos para tratar correos, descomprimir archivos, procesar listados de siniestros, controlar errores y distribuir información a colaboradores.</p>
-              <p>Diseño de bases de datos mediante listas relacionadas de SharePoint para clientes, pólizas, siniestros, tramos, productos, colaboradores e importes, además de trabajo con componentes SPFx.</p>
+              <h3>Prácticas en U24 Los Ángeles</h3>
+              <div class="company">Córdoba</div>
+              <p>Automatización de flujos internos para correo, documentación y listados de siniestros, con control de errores y distribución de información.</p>
+              <p>Modelado de datos empresariales con listas relacionadas de SharePoint y trabajo con componentes SPFx.</p>
               <div class="tag-row"><span class="tag accent">Power Automate</span><span class="tag">SharePoint</span><span class="tag">Microsoft 365</span><span class="tag">SPFx</span><span class="tag">Gestión de datos</span></div>
             </div>
           </article>
@@ -230,7 +351,7 @@
             <div class="timeline-card card">
               <h3>Desarrollo de ValoInsight</h3>
               <div class="company">Proyecto personal y Trabajo Fin de Grado</div>
-              <p>Diseño y desarrollo de una aplicación full stack de análisis competitivo. Separación de frontend y backend, construcción de APIs, persistencia en MongoDB, pipelines de datos y visualizaciones interactivas.</p>
+              <p>Producto full stack que ingiere, normaliza y persiste partidas para convertirlas en analítica táctica, económica y de rendimiento mediante APIs y visualizaciones interactivas.</p>
               <div class="tag-row"><span class="tag accent">React</span><span class="tag">TypeScript</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">MongoDB</span><span class="tag">Recharts</span></div>
             </div>
           </article>
@@ -239,7 +360,7 @@
             <div class="timeline-card card">
               <h3>Proyectos académicos de ingeniería</h3>
               <div class="company">Universidad de Córdoba</div>
-              <p>Desarrollo de intérpretes, algoritmos evolutivos, optimización metaheurística, aplicaciones en C/C++, bases de datos y proyectos de ingeniería del software, tanto de forma individual como colaborativa.</p>
+              <p>Implementación de un intérprete en C++ con Flex/Bison y proyectos de optimización evolutiva y detección de patrones en series temporales.</p>
               <div class="tag-row"><span class="tag">C / C++</span><span class="tag">Python</span><span class="tag">Flex / Bison</span><span class="tag">SQL</span><span class="tag">Linux</span><span class="tag">Git</span></div>
             </div>
           </article>
@@ -303,7 +424,7 @@
           <h2>Base técnica y aprendizaje continuo.</h2>
         </div>
         <div class="training-columns">
-          <section class="training-column card reveal"><div class="training-column-head"><span class="learning-state">Adquirido</span><h3>Tecnologías aplicadas</h3><p>Herramientas utilizadas en proyectos académicos, personales o profesionales.</p></div><div class="technology-list">
+          <section class="training-column card reveal"><div class="training-column-head"><span class="learning-state">Adquirido</span><h3>Tecnologías aplicadas</h3><p>Tecnologías aplicadas en proyectos académicos, personales y profesionales.</p></div><div class="technology-list">
             <div class="technology-item"><span class="tech-icon">Py</span><div><strong>Python</strong><small>Datos, automatización y ML</small></div></div><div class="technology-item"><span class="tech-icon">TS</span><div><strong>TypeScript</strong><small>Frontend mantenible</small></div></div><div class="technology-item"><span class="tech-icon">Re</span><div><strong>React</strong><small>Interfaces y estado</small></div></div><div class="technology-item"><span class="tech-icon">FA</span><div><strong>FastAPI</strong><small>APIs y backend</small></div></div><div class="technology-item"><span class="tech-icon">DB</span><div><strong>MongoDB / SQL</strong><small>Persistencia y consultas</small></div></div><div class="technology-item"><span class="tech-icon">C+</span><div><strong>C / C++</strong><small>Algoritmia y sistemas</small></div></div><div class="technology-item"><span class="tech-icon">PA</span><div><strong>Power Automate</strong><small>Automatización empresarial</small></div></div><div class="technology-item"><span class="tech-icon">SP</span><div><strong>SharePoint</strong><small>Datos y procesos</small></div></div>
           </div></section>
           <section class="training-column acquiring card reveal delay-1"><div class="training-column-head"><span class="learning-state">Adquiriendo</span><h3>En aprendizaje</h3><p>Lista preparada para incorporar nuevas tecnologías.</p></div><div class="technology-list"><div class="technology-item"><span class="tech-icon postman-icon">Pm</span><div><strong>Postman</strong><small>Pruebas y documentación de APIs</small></div></div><div class="technology-item"><span class="tech-icon docker-icon">Dk</span><div><strong>Docker</strong><small>Contenedores y despliegue</small></div></div><div class="technology-placeholder"><span>+</span><p>Añadir próxima tecnología</p></div></div></section>
@@ -336,7 +457,7 @@
       </div>
     </section>
 
-    <section class="section professional-principles" id="motivaciones">
+    <section class="section professional-principles" id="motivaciones" hidden>
       <div class="container">
         <div class="section-heading reveal"><span class="eyebrow">05 · Criterios de trabajo</span><h2>Cómo abordo un proyecto técnico.</h2></div>
         <div class="personal-grid">

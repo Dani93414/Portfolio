@@ -14,3 +14,4 @@ if errorlevel 1 (
 start "" powershell -NoProfile -WindowStyle Hidden -Command "Start-Sleep -Seconds 2; Start-Process 'http://localhost:3000/?v=20260711-ui5'"
 npm run dev
 pause
+n

@@ -7,11 +7,45 @@
   const qs = (selector, scope = document) => scope.querySelector(selector);
   const qsa = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-  // Desktop landing: folders reveal the existing portfolio sections.
+  // The desktop is the portfolio's permanent home. Applications open on top of
+  // it instead of revealing the legacy, scrollable landing page.
   const desktop = qs('[data-os-desktop]');
   const desktopLight = qs('[data-desktop-light]');
   const cvLibraryDialog = qs('[data-cv-library-dialog]');
   const certificatesDialog = qs('[data-certificates-dialog]');
+  const contactDialog = qs('[data-contact-dialog]');
+  const experienceDialog = qs('[data-experience-dialog]');
+  const profileDialog = qs('[data-profile-dialog]');
+  const openTechKeyboardDialog = (folder) => window.TechKeyboard?.open(folder);
+  const openProjectsDialog = (folder) => window.ProjectsExplorer?.open(folder);
+  const openProfileDialog = (folder) => {
+    if (!profileDialog?.showModal || profileDialog.open) return;
+    const person = data.person || {};
+    const photo = qs('[data-profile-photo]', profileDialog);
+    if (photo && person.photo) {
+      photo.src = person.photo;
+      photo.onerror = () => {
+        photo.onerror = null;
+        photo.src = person.avatar || '';
+      };
+    }
+    qs('[data-profile-github]', profileDialog)?.setAttribute('href', person.github || 'https://github.com/Dani93414');
+    qs('[data-profile-linkedin]', profileDialog)?.setAttribute('href', person.linkedin || 'https://www.linkedin.com/in/daniel-grande-rubio');
+    folder?.classList.add('is-opening');
+    window.setTimeout(() => folder?.classList.remove('is-opening'), prefersReduced ? 0 : 160);
+    profileDialog.classList.remove('is-closing', 'is-open');
+    profileDialog.showModal();
+    if (prefersReduced) { profileDialog.classList.add('is-open'); return; }
+    void profileDialog.offsetWidth;
+    requestAnimationFrame(() => profileDialog.classList.add('is-open'));
+  };
+  const closeProfileDialog = () => {
+    if (!profileDialog?.open) return;
+    if (prefersReduced) { profileDialog.close(); return; }
+    profileDialog.classList.remove('is-open');
+    profileDialog.classList.add('is-closing');
+    window.setTimeout(() => { if (profileDialog.open) profileDialog.close(); profileDialog.classList.remove('is-closing'); }, 180);
+  };
   const openCvLibrary = () => {
     if (cvLibraryDialog?.showModal) cvLibraryDialog.showModal();
   };
@@ -41,13 +75,70 @@
       certificatesDialog.classList.remove('is-closing');
     }, 180);
   };
-  const leaveDesktop = (destination = '#inicio') => {
-    if (!desktop) return;
-    body.classList.add('desktop-exited');
-    window.setTimeout(() => {
-      const target = qs(destination);
-      if (target) target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
-    }, prefersReduced ? 0 : 280);
+  const openContactDialog = (folder) => {
+    if (!contactDialog?.showModal || contactDialog.open) return;
+    folder?.classList.add('is-opening');
+    window.setTimeout(() => folder?.classList.remove('is-opening'), prefersReduced ? 0 : 160);
+    contactDialog.classList.remove('is-closing', 'is-open');
+    contactDialog.showModal();
+    if (prefersReduced) { contactDialog.classList.add('is-open'); return; }
+    void contactDialog.offsetWidth;
+    requestAnimationFrame(() => contactDialog.classList.add('is-open'));
+  };
+  const closeContactDialog = () => {
+    if (!contactDialog?.open) return;
+    if (prefersReduced) { contactDialog.close(); return; }
+    contactDialog.classList.remove('is-open');
+    contactDialog.classList.add('is-closing');
+    window.setTimeout(() => { if (contactDialog.open) contactDialog.close(); contactDialog.classList.remove('is-closing'); }, 180);
+  };
+  const selectExperience = (index, animate = true) => {
+    const entries = qsa('[data-experience-item]');
+    const panels = qsa('.experience-detail-panel');
+    const target = panels[index];
+    if (!target) return;
+    entries.forEach((entry, entryIndex) => {
+      const active = entryIndex === index;
+      entry.classList.toggle('is-active', active);
+      entry.setAttribute('aria-selected', String(active));
+    });
+    panels.forEach((panel, panelIndex) => {
+      const active = panelIndex === index;
+      panel.hidden = !active;
+      panel.classList.toggle('is-active', active);
+      panel.classList.remove('is-switching');
+    });
+    if (animate && !prefersReduced) {
+      void target.offsetWidth;
+      target.classList.add('is-switching');
+    }
+  };
+  const openExperienceDialog = (folder) => {
+    if (!experienceDialog?.showModal || experienceDialog.open) return;
+    folder?.classList.add('is-opening');
+    window.setTimeout(() => folder?.classList.remove('is-opening'), prefersReduced ? 0 : 160);
+    selectExperience(0, false);
+    experienceDialog.classList.remove('is-closing', 'is-open');
+    experienceDialog.showModal();
+    if (prefersReduced) { experienceDialog.classList.add('is-open'); return; }
+    void experienceDialog.offsetWidth;
+    requestAnimationFrame(() => experienceDialog.classList.add('is-open'));
+  };
+  const closeExperienceDialog = () => {
+    if (!experienceDialog?.open) return;
+    if (prefersReduced) { experienceDialog.close(); return; }
+    experienceDialog.classList.remove('is-open');
+    experienceDialog.classList.add('is-closing');
+    window.setTimeout(() => { if (experienceDialog.open) experienceDialog.close(); experienceDialog.classList.remove('is-closing'); }, 180);
+  };
+  window.PortfolioExperience = { open: openExperienceDialog };
+  const returnToDesktop = () => {
+    // Home must always restore the application desktop, never the old
+    // scrollable portfolio page. Closing open windows also makes the action
+    // behave like the Home button on a desktop taskbar.
+    qsa('dialog[open]').forEach((dialog) => dialog.close());
+    body.classList.remove('desktop-exited');
+    window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
   };
   if (desktop) {
     const languageButton = qs('[data-desktop-language]');
@@ -63,6 +154,11 @@
     window.addEventListener('portfolio:language', updateLanguageButton);
     window.setTimeout(updateLanguageButton, 0);
     const folders = qsa('[data-folder-id]', desktop);
+    const trainingIcon = qs('.folder-training .folder-icon', desktop);
+    if (trainingIcon) {
+      trainingIcon.className = 'desktop-app-icon app-training';
+      trainingIcon.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-5 9 5-9 5-9-5Z"/><path d="M7 12.2V16c2.6 2 7.4 2 10 0v-3.8"/></svg>';
+    }
     const finePointer = window.matchMedia('(pointer:fine)').matches;
     // Folder positions are intentionally temporary: a page refresh restores the desktop layout.
     try { localStorage.removeItem('portfolio-desktop-folders'); } catch { /* Storage may be unavailable. */ }
@@ -86,9 +182,14 @@
           return;
         }
         if (finePointer) selectFolder(folder, event.ctrlKey || event.metaKey);
+        else if (folder.dataset.folderId === 'profile') openProfileDialog(folder);
         else if (folder.dataset.folderId === 'cv') openCvLibrary();
         else if (folder.dataset.folderId === 'certificates') openCertificatesDialog(folder);
-        else leaveDesktop(folder.getAttribute('href'));
+        else if (folder.dataset.folderId === 'contact') openContactDialog(folder);
+        else if (folder.dataset.folderId === 'experience') openExperienceDialog(folder);
+        else if (folder.dataset.folderId === 'training') openTechKeyboardDialog(folder);
+        else if (folder.dataset.folderId === 'projects') openProjectsDialog(folder);
+        else returnToDesktop();
       });
       folder.addEventListener('dblclick', (event) => {
         event.preventDefault();
@@ -96,11 +197,16 @@
           openCvLibrary();
           return;
         }
+        if (folder.dataset.folderId === 'profile') { openProfileDialog(folder); return; }
         if (folder.dataset.folderId === 'certificates') {
           openCertificatesDialog(folder);
           return;
         }
-        leaveDesktop(folder.getAttribute('href'));
+        if (folder.dataset.folderId === 'contact') { openContactDialog(folder); return; }
+        if (folder.dataset.folderId === 'experience') { openExperienceDialog(folder); return; }
+        if (folder.dataset.folderId === 'training') { openTechKeyboardDialog(folder); return; }
+        if (folder.dataset.folderId === 'projects') { openProjectsDialog(folder); return; }
+        returnToDesktop();
       });
       folder.addEventListener('keydown', (event) => {
         if (event.key !== 'Enter' && event.key !== ' ') return;
@@ -109,11 +215,16 @@
           openCvLibrary();
           return;
         }
+        if (folder.dataset.folderId === 'profile') { openProfileDialog(folder); return; }
         if (folder.dataset.folderId === 'certificates') {
           openCertificatesDialog(folder);
           return;
         }
-        leaveDesktop(folder.getAttribute('href'));
+        if (folder.dataset.folderId === 'contact') { openContactDialog(folder); return; }
+        if (folder.dataset.folderId === 'experience') { openExperienceDialog(folder); return; }
+        if (folder.dataset.folderId === 'training') { openTechKeyboardDialog(folder); return; }
+        if (folder.dataset.folderId === 'projects') { openProjectsDialog(folder); return; }
+        returnToDesktop();
       });
       if (!finePointer) return;
       let dragStart;
@@ -162,18 +273,39 @@
     desktop.addEventListener('click', (event) => {
       if (finePointer && !event.target.closest('[data-folder-id]')) folders.forEach((folder) => folder.classList.remove('selected'));
     });
-    qs('[data-desktop-enter]')?.addEventListener('click', () => leaveDesktop());
-    qs('[data-desktop-return]')?.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
-      body.classList.remove('desktop-exited');
-    });
+    qs('[data-desktop-enter]')?.addEventListener('click', returnToDesktop);
+    qs('[data-desktop-return]')?.addEventListener('click', returnToDesktop);
     qs('[data-cv-library-close]')?.addEventListener('click', () => cvLibraryDialog?.close());
+    qs('[data-profile-close]')?.addEventListener('click', closeProfileDialog);
+    profileDialog?.addEventListener('close', () => profileDialog.classList.remove('is-open', 'is-closing'));
+    qs('[data-profile-cv]')?.addEventListener('click', () => { profileDialog?.close(); window.setTimeout(openCvLibrary, 0); });
+    qs('[data-profile-projects]')?.addEventListener('click', () => { profileDialog?.close(); window.setTimeout(openProjectsDialog, 0); });
     qs('[data-certificates-close]')?.addEventListener('click', closeCertificatesDialog);
     certificatesDialog?.addEventListener('close', () => certificatesDialog.classList.remove('is-open', 'is-closing'));
+    qs('[data-contact-close]')?.addEventListener('click', closeContactDialog);
+    contactDialog?.addEventListener('close', () => contactDialog.classList.remove('is-open', 'is-closing'));
+    qs('[data-experience-close]')?.addEventListener('click', closeExperienceDialog);
+    experienceDialog?.addEventListener('close', () => experienceDialog.classList.remove('is-open', 'is-closing'));
     qsa('[data-certificates-link]').forEach((link) => link.addEventListener('click', (event) => {
       event.preventDefault();
       openCertificatesDialog();
     }));
+    qsa('[data-contact-link]').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); openContactDialog(); }));
+    qsa('a[href="#experiencia"]:not([data-folder-id])').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); openExperienceDialog(); }));
+    qsa('a[href="#formacion"]:not([data-folder-id])').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); openTechKeyboardDialog(); }));
+    qsa('a[href="#proyectos"]:not([data-folder-id])').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); openProjectsDialog(); }));
+    qsa('a[href="#perfil"]:not([data-folder-id])').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); openProfileDialog(); }));
+    qsa('[data-experience-item]').forEach((entry, index) => {
+      entry.addEventListener('click', () => selectExperience(index));
+      entry.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+        event.preventDefault();
+        const entries = qsa('[data-experience-item]');
+        const next = (index + (event.key === 'ArrowDown' ? 1 : -1) + entries.length) % entries.length;
+        entries[next].focus();
+        selectExperience(next);
+      });
+    });
     if (!prefersReduced && window.matchMedia('(pointer:fine)').matches && desktopLight) {
       desktop.addEventListener('pointermove', (event) => {
         const rect = desktop.getBoundingClientRect();
@@ -197,14 +329,28 @@
   }
 
   // Theme
-  const storedTheme = localStorage.getItem('portfolio-theme');
-  const initialTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-  root.dataset.theme = initialTheme;
+  let storedTheme = null;
+  try { storedTheme = localStorage.getItem('portfolio-theme'); } catch { /* Storage may be unavailable. */ }
+  const initialTheme = storedTheme === 'light' || storedTheme === 'dark'
+    ? storedTheme
+    : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  const themeColor = qs('meta[name="theme-color"]');
+  const applyTheme = (theme, persist = false) => {
+    root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+    if (themeColor) themeColor.content = theme === 'light' ? '#f5f7fa' : '#080d17';
+    if (persist) {
+      try { localStorage.setItem('portfolio-theme', theme); } catch { /* Storage may be unavailable. */ }
+    }
+  };
+  applyTheme(initialTheme);
 
   const updateThemeButtons = () => {
     qsa('[data-theme-toggle]').forEach((button) => {
       const isLight = root.dataset.theme === 'light';
       button.setAttribute('aria-label', isLight ? 'Activar modo oscuro' : 'Activar modo claro');
+      button.setAttribute('aria-pressed', String(isLight));
+      button.title = isLight ? 'Activar modo oscuro' : 'Activar modo claro';
       button.innerHTML = isLight
         ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 1 0 9 9A9 9 0 1 1 12 3Z"/></svg>'
         : '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
@@ -213,10 +359,15 @@
   updateThemeButtons();
   qsa('[data-theme-toggle]').forEach((button) => {
     button.addEventListener('click', () => {
-      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
-      localStorage.setItem('portfolio-theme', root.dataset.theme);
+      applyTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true);
       updateThemeButtons();
     });
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event.key !== 'portfolio-theme' || !['light', 'dark'].includes(event.newValue)) return;
+    applyTheme(event.newValue);
+    updateThemeButtons();
   });
 
   // Mobile navigation
@@ -352,8 +503,7 @@
   });
 
   // Open Gmail compose with the completed form.
-  const contactForm = qs('[data-contact-form]');
-  if (contactForm) {
+  qsa('[data-contact-form]').forEach((contactForm) => {
     contactForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const form = new FormData(contactForm);
@@ -372,7 +522,7 @@
       window.open(gmailUrl.toString(), '_blank', 'noopener,noreferrer');
       showToast('Abriendo Gmail');
     });
-  }
+  });
 
   // Populate featured project cards on homepage
   const homeGrid = qs('[data-home-projects]');
@@ -409,14 +559,15 @@
   }
 
   function projectCardMarkup(project, extended = false) {
+    const tr = (value) => window.PortfolioI18n?.translate?.(value) || value;
     const destination = project.href || `proyecto.html?id=${encodeURIComponent(project.id)}`;
-    const privateLabel = project.visibility === 'private' ? '<span class="tag">Privado</span>' : '';
-    const capabilities = extended ? `<ul class="project-capabilities">${project.capabilities.slice(0, 4).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : '';
+    const privateLabel = project.visibility === 'private' ? `<span class="tag">${tr('Privado')}</span>` : '';
+    const capabilities = extended ? `<ul class="project-capabilities">${project.capabilities.slice(0, 4).map((item) => `<li>${escapeHtml(tr(item))}</li>`).join('')}</ul>` : '';
     return `
       <article class="project-card card reveal" data-accent="${escapeHtml(project.accent)}" data-tilt>
-        <div class="project-kicker">${escapeHtml(project.kicker)}</div>
+        <div class="project-kicker">${escapeHtml(tr(project.kicker))}</div>
         <h3>${escapeHtml(project.name)}</h3>
-        <p>${escapeHtml(project.description)}</p>
+        <p>${escapeHtml(tr(project.description))}</p>
         ${capabilities}
         <div class="tag-row">
           ${project.technologies.slice(0, extended ? 6 : 4).map((tech) => `<span class="tag">${escapeHtml(tech)}</span>`).join('')}
@@ -424,7 +575,7 @@
         </div>
         <div class="project-card-footer">
           <a class="project-link" href="${escapeHtml(destination)}" ${destination.startsWith('http') ? 'target="_blank" rel="noreferrer"' : ''}>
-            Ver proyecto <span>→</span>
+            ${tr('Ver proyecto')} <span>→</span>
           </a>
           <span class="repo-meta" data-repo-name="${escapeHtml(project.repoName)}">${escapeHtml(project.year)}</span>
         </div>

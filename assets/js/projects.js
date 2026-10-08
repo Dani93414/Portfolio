@@ -9,6 +9,7 @@
   let currentFilter = 'Todos';
 
   if (!grid || !Array.isArray(data.projects)) return;
+  const tr = (value) => window.PortfolioI18n?.translate?.(value) || value;
 
   const render = () => {
     const query = (search?.value || '').trim().toLocaleLowerCase('es');
@@ -21,13 +22,13 @@
     const cardMarkup = (project) => {
       const base = helpers.projectCardMarkup(project, true);
       return base.replace('<article ', `<article data-project-id="${project.id}" `)
-        .replace(/<a class="project-link"[^>]*>[\s\S]*?<\/a>/, `<button class="project-link btn-ghost" type="button" data-open-project="${project.id}">Ver detalles <span>→</span></button>`);
+        .replace(/<a class="project-link"[^>]*>[\s\S]*?<\/a>/, `<button class="project-link btn-ghost" type="button" data-open-project="${project.id}">${tr('Ver detalles')} <span>→</span></button>`);
     };
     if (currentFilter === 'Todos' && !query) {
       const groups = [
-        ['Proyecto destacado', visible.filter((project) => project.id === 'valoinsight')],
-        ['Metaheurística', visible.filter((project) => project.category.includes('Metaheurística'))],
-        ['Software, interfaces y experiencia', visible.filter((project) => project.id !== 'valoinsight' && !project.category.includes('Metaheurística'))],
+        [tr('Proyecto destacado'), visible.filter((project) => project.id === 'valoinsight')],
+        [tr('Metaheurística'), visible.filter((project) => project.category.includes('Metaheurística'))],
+        [tr('Software, interfaces y experiencia'), visible.filter((project) => project.id !== 'valoinsight' && !project.category.includes('Metaheurística'))],
       ];
       grid.innerHTML = groups.map(([title, projects]) => `<section class="project-family"><div class="project-family-heading"><span>${title}</span><strong>${String(projects.length).padStart(2, '0')}</strong></div><div class="project-family-grid">${projects.map(cardMarkup).join('')}</div></section>`).join('');
     } else {
@@ -35,7 +36,7 @@
     }
 
     if (!visible.length) {
-      grid.innerHTML = '<div class="card" style="padding:32px;grid-column:1/-1"><h3>No hay proyectos que coincidan</h3><p class="muted">Prueba con otro filtro o término de búsqueda.</p></div>';
+      grid.innerHTML = `<div class="card" style="padding:32px;grid-column:1/-1"><h3>${tr('No hay proyectos que coincidan')}</h3><p class="muted">${tr('Prueba con otro filtro o término de búsqueda.')}</p></div>`;
     }
 
     grid.querySelectorAll('[data-open-project]').forEach((button) => {
@@ -47,24 +48,24 @@
     const project = data.projects.find((item) => item.id === id);
     if (!project || !dialog || !dialogContent) return;
     const repoButton = project.visibility === 'private'
-      ? `<a class="btn btn-secondary" href="${project.repo}" target="_blank" rel="noreferrer">Repositorio privado ↗</a>`
-      : `<a class="btn btn-primary" href="${project.repo}" target="_blank" rel="noreferrer">Abrir GitHub ↗</a>`;
-    const demoButton = project.demo ? `<a class="btn btn-secondary" href="${project.demo}" target="_blank" rel="noreferrer">Abrir demo ↗</a>` : '';
-    const caseButton = project.href ? `<a class="btn btn-secondary" href="${project.href}">Caso de estudio</a>` : '';
+      ? `<a class="btn btn-secondary" href="${project.repo}" target="_blank" rel="noreferrer">${tr('Repositorio privado ↗')}</a>`
+      : `<a class="btn btn-primary" href="${project.repo}" target="_blank" rel="noreferrer">${tr('Abrir GitHub ↗')}</a>`;
+    const demoButton = project.demo ? `<a class="btn btn-secondary" href="${project.demo}" target="_blank" rel="noreferrer">${tr('Abrir demo ↗')}</a>` : '';
+    const caseButton = project.href ? `<a class="btn btn-secondary" href="${project.href}">${tr('Caso de estudio')}</a>` : '';
 
     dialogContent.innerHTML = `
-      <div class="dialog-kicker">${helpers.escapeHtml(project.kicker)}</div>
+      <div class="dialog-kicker">${helpers.escapeHtml(tr(project.kicker))}</div>
       <h2>${helpers.escapeHtml(project.name)}</h2>
-      <p>${helpers.escapeHtml(project.longDescription)}</p>
+      <p>${helpers.escapeHtml(tr(project.longDescription))}</p>
       <div class="tag-row">${project.technologies.map((tech) => `<span class="tag">${helpers.escapeHtml(tech)}</span>`).join('')}</div>
       <div class="dialog-columns">
         <div class="dialog-block">
-          <h3>Qué hace</h3>
-          <ul>${project.capabilities.map((item) => `<li>${helpers.escapeHtml(item)}</li>`).join('')}</ul>
+          <h3>${tr('Qué hace')}</h3>
+          <ul>${project.capabilities.map((item) => `<li>${helpers.escapeHtml(tr(item))}</li>`).join('')}</ul>
         </div>
         <div class="dialog-block">
-          <h3>Colaboración</h3>
-          <ul>${project.collaborators.map((person) => `<li><strong>${helpers.escapeHtml(person.name)}</strong><br><span class="muted">${helpers.escapeHtml(person.role)}</span></li>`).join('')}</ul>
+          <h3>${tr('Colaboración')}</h3>
+          <ul>${project.collaborators.map((person) => `<li><strong>${helpers.escapeHtml(person.name)}</strong><br><span class="muted">${helpers.escapeHtml(tr(person.role))}</span></li>`).join('')}</ul>
         </div>
       </div>
       <div class="dialog-actions">${repoButton}${demoButton}${caseButton}</div>`;
@@ -79,6 +80,7 @@
     });
   });
   search?.addEventListener('input', render);
+  window.addEventListener('portfolio:language', render);
   document.querySelector('[data-dialog-close]')?.addEventListener('click', () => dialog?.close());
   dialog?.addEventListener('click', (event) => {
     const rect = dialog.getBoundingClientRect();
